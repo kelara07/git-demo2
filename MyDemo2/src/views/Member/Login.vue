@@ -1,54 +1,37 @@
 <template>
-  <div>
-    <div class="mb-4">
-    <el-button>Default</el-button>
-    <el-button type="primary">Primary</el-button>
-    <el-button type="success">Success</el-button>
-    <el-button type="info">Info</el-button>
-    <el-button type="warning">Warning</el-button>
-    <el-button type="danger">Danger</el-button>
-  </div>
-
-  <div class="mb-4">
-    <el-button plain>Plain</el-button>
-    <el-button type="primary" plain>Primary</el-button>
-    <el-button type="success" plain>Success</el-button>
-    <el-button type="info" plain>Info</el-button>
-    <el-button type="warning" plain>Warning</el-button>
-    <el-button type="danger" plain>Danger</el-button>
-  </div>
-
-  <div class="mb-4">
-    <el-button round>Round</el-button>
-    <el-button type="primary" round>Primary</el-button>
-    <el-button type="success" round>Success</el-button>
-    <el-button type="info" round>Info</el-button>
-    <el-button type="warning" round>Warning</el-button>
-    <el-button type="danger" round>Danger</el-button>
-  </div>
-
-  <div>
-    <el-button :icon="Search" circle />
-    <el-button type="primary" :icon="Edit" circle />
-    <el-button type="success" :icon="Check" circle />
-    <el-button type="info" :icon="Message" circle />
-    <el-button type="warning" :icon="Star" circle />
-    <el-button type="danger" :icon="Delete" circle />
-  </div>
-  </div>
+  <el-container>
+    <el-main>
+      <el-row class="row-bg" justify="center" aline>
+        <el-col :span="24" :offset="6">
+          <div class="flex gap-4 mb-4">
+            <span>账号</span>
+            <el-input v-model="input1" style="width: 240px" placeholder="请输入账号" />
+          </div>
+        </el-col>
+        <el-col :span="24" :offset="6">
+          <div class="flex gap-4">
+            <span>密码</span>
+            <el-input v-model="input3" style="width: 240px" placeholder="请输入密码"> </el-input>
+          </div>
+        </el-col>
+        <el-col :span="24" :offset="6">
+          <el-button type="primary" style="width: 240px" @click="loginIn">登录</el-button>
+        </el-col>
+      </el-row>
+    </el-main>
+  </el-container>
 </template>
 
 <script lang="ts" setup>
-import {
-  Check,
-  Delete,
-  Edit,
-  Message,
-  Search,
-  Star,
-} from '@element-plus/icons-vue'
+import router from '@/router';
+import { ref } from 'vue'
+const input1 = ref('')
+const input3 = ref('')
+
+const loginIn = () => {
+  router.push('/about')
+}
 </script>
 
-<script setup lang="ts"></script>
-
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>
