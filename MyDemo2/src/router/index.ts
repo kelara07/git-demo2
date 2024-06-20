@@ -15,6 +15,10 @@ const router = createRouter({
           path: '/setting',
           component: () => import('@/components/Setting.vue')
         },
+        {
+          path: '/three',
+          component: () => import('@/views/Three/ThreeTest.vue')
+        },
       ]
     },
     {

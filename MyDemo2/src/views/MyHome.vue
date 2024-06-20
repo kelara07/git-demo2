@@ -4,6 +4,7 @@
       <nav>
         <RouterLink to="/setting"><Button class="primary">Setting</Button></RouterLink>
         <RouterLink to="/about"><Button type="button" class="primary">About</Button></RouterLink>
+        <RouterLink to="/three"><Button type="button" class="primary">Three</Button></RouterLink>
       </nav>
     </div>
   </header>
