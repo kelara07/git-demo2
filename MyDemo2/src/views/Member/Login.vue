@@ -1,37 +1,115 @@
 <template>
-  <el-container>
-    <el-main>
-      <el-row class="row-bg" justify="center" aline>
-        <el-col :span="24" :offset="6">
-          <div class="flex gap-4 mb-4">
-            <span>账号</span>
-            <el-input v-model="input1" style="width: 240px" placeholder="请输入账号" />
-          </div>
-        </el-col>
-        <el-col :span="24" :offset="6">
-          <div class="flex gap-4">
-            <span>密码</span>
-            <el-input v-model="input3" style="width: 240px" placeholder="请输入密码"> </el-input>
-          </div>
-        </el-col>
-        <el-col :span="24" :offset="6">
-          <el-button type="primary" style="width: 240px" @click="loginIn">登录</el-button>
-        </el-col>
-      </el-row>
-    </el-main>
-  </el-container>
+  <div class="login-container">
+    <el-card class="login-card">
+      <h2 class="login-title">登录</h2>
+      <el-form  label-width="0px">
+        <el-form-item>
+          <el-input v-model="loginForm.username" placeholder="请输入账号"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-input
+            v-model="loginForm.password"
+            type="password"
+            placeholder="请输入密码"
+          ></el-input>
+        </el-form-item>
+        <div class="login-actions">
+          <el-button>忘记密码？</el-button>
+          <el-button type="primary" @click="onLogin">登录</el-button>
+        </div>
+        <div class="extra-actions">
+          <el-button>注册</el-button>
+          <el-button>帮助</el-button>
+        </div>
+      </el-form>
+    </el-card>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import router from '@/router';
+import router from '@/router'
 import { ref } from 'vue'
-const input1 = ref('')
-const input3 = ref('')
+import { useTagStore } from '@/stores'
 
-const loginIn = () => {
+const tagStore = useTagStore()
+
+const tagList = ref<any[]>([
+  {
+    id: 1,
+    tag:'落'
+  },
+  {
+    id: 2,
+    tag:'霞'
+  },
+  {
+    id: 3,
+    tag:'与'
+  },
+  {
+    id: 4,
+    tag:'孤'
+  },
+  {
+    id: 5,
+    tag:'鹜'
+  },
+  {
+    id: 6,
+    tag:'齐'
+  },
+  {
+    id: 7,
+    tag:'飞'
+  },
+])
+
+
+const loginForm = ref<any>({
+  username: '',
+  password: ''
+})
+
+const onLogin = () => {
+  tagStore.setTag(tagList.value)
   router.push('/about')
+  console.log(tagStore.tag);
 }
 </script>
 
 <style lang="scss" scoped>
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  background-color: #f2f2f2;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.login-title {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.login-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.extra-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
 </style>
