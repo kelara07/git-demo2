@@ -1,5 +1,4 @@
 <template>
-  <div class="">aboutPage</div>
   <el-button @click="update">截取tag</el-button>
   <div><span v-for="(item, index) in tag" :key="index">{{ item.tag }}</span></div>
 </template>
