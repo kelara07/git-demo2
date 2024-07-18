@@ -11,6 +11,9 @@
         <RouterLink to="/three">
           <el-button type="primary">Three</el-button>
         </RouterLink>
+        <RouterLink to="/customer/list">
+          <el-button type="primary">customer</el-button>
+        </RouterLink>
       </nav>
     </div>
   </header>

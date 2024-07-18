@@ -13,6 +13,16 @@
             placeholder="请输入密码"
           ></el-input>
         </el-form-item>
+        <el-form-item>
+          <el-input
+            v-model="loginForm.password"
+            type="password"
+            placeholder="请输入驗證碼"
+          ></el-input>
+        </el-form-item>
+        <el-form-item>
+          <img :src="imgSrc" alt="" height="36" />
+        </el-form-item>
         <div class="login-actions">
           <el-button>忘记密码？</el-button>
           <el-button type="primary" @click="onLogin">登录</el-button>
@@ -28,10 +38,14 @@
 
 <script lang="ts" setup>
 import router from '@/router'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useTagStore } from '@/stores'
+import axios from 'axios'
 
 const tagStore = useTagStore()
+
+const imgSrc = ref()
+const baseURL = import.meta.env.VITE_API_BASE_URL
 
 const tagList = ref<any[]>([
   {
@@ -70,11 +84,31 @@ const loginForm = ref<any>({
   password: ''
 })
 
+/**
+ * 获取图片验证码
+ */
+ const captchaImage = async () => {
+  axios({
+    method: 'GET',
+    baseURL: baseURL,
+    url: '/Auth/login/getCaptchaImage',
+    responseType: 'blob',
+  }).then((res) => {
+    const blob = new Blob([res.data], { type: res.data.type })
+    const url = window.URL.createObjectURL(blob)
+    imgSrc.value = url
+  })
+}
+
 const onLogin = () => {
   tagStore.setTag(tagList.value)
   router.push('/about')
   console.log(tagStore.tag);
 }
+
+onMounted(() => {
+  captchaImage()
+})
 </script>
 
 <style lang="scss" scoped>
