@@ -99,6 +99,9 @@ const captchaImage = async () => {
   })
 }
 
+/**
+ * 登录跳转
+ */
 const onLogin = () => {
   tagStore.setTag(tagList.value)
   router.replace('/home')

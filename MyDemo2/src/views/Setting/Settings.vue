@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-4">
+  <!-- <div class="mb-4">
     <el-button disabled>Default</el-button>
     <el-button type="primary" disabled>Primary</el-button>
     <el-button type="success" disabled>Success</el-button>
@@ -120,47 +120,110 @@
     <span style="vertical-align: middle"> Search </span>
   </el-button>
 
-  <hr/>
-  <div class="m-4">
+  <hr/> -->
+  <!-- <div class="m-4">
     <p>Child options expand when clicked (default)</p>
     <el-cascader v-model="value" :options="options" @change="handleChange" />
   </div>
   <div class="m-4">
     <p>Child options expand when hovered</p>
-    <el-cascader
-      v-model="value"
-      :options="options"
-      :props="props"
-      @change="handleChange"
-    />
+    <el-cascader v-model="value" :options="options" :props="props" @change="handleChange" />
   </div>
 
-  <hr/>
-  <el-checkbox-group v-model="checkedCities" :min="1" :max="2">
+  <hr />
+  <el-checkbox-group v-model="checkedCities" :min="1" :max="5">
     <el-checkbox v-for="city in cities" :key="city" :label="city" :value="city">
       {{ city }}
     </el-checkbox>
   </el-checkbox-group>
 
+  <hr />
+  <el-cascader :options="options2" /> -->
+
+  <hr />
+  <el-radio-group v-model="size" aria-label="size control">
+    <el-radio-button value="large">large</el-radio-button>
+    <el-radio-button value="default">default</el-radio-button>
+    <el-radio-button value="small">small</el-radio-button>
+  </el-radio-group>
+  <div class="demo-date-picker">
+    <div class="block">
+      <span class="demonstration">Default</span>
+      <el-date-picker v-model="value1" type="date" placeholder="Pick a day" :size="size" />
+    </div>
+    <div class="block">
+      <span class="demonstration">Picker with quick options</span>
+      <el-date-picker
+        v-model="value2"
+        type="date"
+        placeholder="Pick a day"
+        :disabled-date="disabledDate"
+        :shortcuts="shortcuts"
+        :size="size"
+      />
+    </div>
+  </div>
+
+  <hr />
+  <div class="block">
+    <span class="demonstration">Week</span>
+    <el-date-picker v-model="value3" type="week" format="[Week] ww" placeholder="Pick a week" />
+  </div>
+
   <hr/>
-  <el-cascader :options="options2" />
+  <div class="block">
+    <span class="demonstration">daterange</span>
+    <el-date-picker
+      v-model="value2"
+      type="daterange"
+      start-placeholder="Start Date"
+      end-placeholder="End Date"
+      :default-value="[new Date(2010, 9, 1), new Date(2010, 10, 1)]"
+    />
+  </div>
+
+  <hr/>
+  <div class="block">
+    <span class="demonstration">With default time</span>
+    <el-date-picker
+      v-model="value3"
+      type="datetime"
+      placeholder="Select date and time"
+      :default-time="defaultTime"
+    />
+  </div>
+
+  <hr/>
+  <el-input
+    v-model="input"
+    style="width: 240px"
+    placeholder="Please input"
+    :formatter="(value: any) => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
+    :parser="(value: any) => value.replace(/\$\s?|(,*)/g, '')"
+  />
+
+  <hr/>
+  <el-input-tag
+    v-model="input1"
+    placeholder="Please input"
+    aria-label="Please click the Enter key after input"
+  />
+
+  <hr/>
+  <el-select-v2
+    v-model="value4"
+    :options="options3"
+    placeholder="Please select"
+    size="large"
+    style="width: 240px"
+  />
 </template>
 
 <script lang="ts" setup>
-import {
-  Check,
-  Delete,
-  Edit,
-  Message,
-  Search,
-  Star,
-} from '@element-plus/icons-vue'
+import { Check, Delete, Edit, Message, Search, Star } from '@element-plus/icons-vue'
 import { Share, Upload } from '@element-plus/icons-vue'
 
-import {
-  ArrowLeft,
-  ArrowRight,
-} from '@element-plus/icons-vue'
+import { ArrowLeft, ArrowRight } from '@element-plus/icons-vue'
 
 import { Eleme } from '@element-plus/icons-vue'
 import { ref } from 'vue'
@@ -168,7 +231,7 @@ import { ref } from 'vue'
 const value = ref([])
 
 const props = {
-  expandTrigger: 'hover' as const,
+  expandTrigger: 'hover' as const
 }
 
 const handleChange = (value: string) => {
@@ -186,21 +249,21 @@ const options = [
         children: [
           {
             value: 'consistency',
-            label: 'Consistency',
+            label: 'Consistency'
           },
           {
             value: 'feedback',
-            label: 'Feedback',
+            label: 'Feedback'
           },
           {
             value: 'efficiency',
-            label: 'Efficiency',
+            label: 'Efficiency'
           },
           {
             value: 'controllability',
-            label: 'Controllability',
-          },
-        ],
+            label: 'Controllability'
+          }
+        ]
       },
       {
         value: 'navigation',
@@ -208,15 +271,15 @@ const options = [
         children: [
           {
             value: 'side nav',
-            label: 'Side Navigation',
+            label: 'Side Navigation'
           },
           {
             value: 'top nav',
-            label: 'Top Navigation',
-          },
-        ],
-      },
-    ],
+            label: 'Top Navigation'
+          }
+        ]
+      }
+    ]
   },
   {
     value: 'component',
@@ -228,25 +291,25 @@ const options = [
         children: [
           {
             value: 'layout',
-            label: 'Layout',
+            label: 'Layout'
           },
           {
             value: 'color',
-            label: 'Color',
+            label: 'Color'
           },
           {
             value: 'typography',
-            label: 'Typography',
+            label: 'Typography'
           },
           {
             value: 'icon',
-            label: 'Icon',
+            label: 'Icon'
           },
           {
             value: 'button',
-            label: 'Button',
-          },
-        ],
+            label: 'Button'
+          }
+        ]
       },
       {
         value: 'form',
@@ -254,61 +317,61 @@ const options = [
         children: [
           {
             value: 'radio',
-            label: 'Radio',
+            label: 'Radio'
           },
           {
             value: 'checkbox',
-            label: 'Checkbox',
+            label: 'Checkbox'
           },
           {
             value: 'input',
-            label: 'Input',
+            label: 'Input'
           },
           {
             value: 'input-number',
-            label: 'InputNumber',
+            label: 'InputNumber'
           },
           {
             value: 'select',
-            label: 'Select',
+            label: 'Select'
           },
           {
             value: 'cascader',
-            label: 'Cascader',
+            label: 'Cascader'
           },
           {
             value: 'switch',
-            label: 'Switch',
+            label: 'Switch'
           },
           {
             value: 'slider',
-            label: 'Slider',
+            label: 'Slider'
           },
           {
             value: 'time-picker',
-            label: 'TimePicker',
+            label: 'TimePicker'
           },
           {
             value: 'date-picker',
-            label: 'DatePicker',
+            label: 'DatePicker'
           },
           {
             value: 'datetime-picker',
-            label: 'DateTimePicker',
+            label: 'DateTimePicker'
           },
           {
             value: 'upload',
-            label: 'Upload',
+            label: 'Upload'
           },
           {
             value: 'rate',
-            label: 'Rate',
+            label: 'Rate'
           },
           {
             value: 'form',
-            label: 'Form',
-          },
-        ],
+            label: 'Form'
+          }
+        ]
       },
       {
         value: 'data',
@@ -316,29 +379,29 @@ const options = [
         children: [
           {
             value: 'table',
-            label: 'Table',
+            label: 'Table'
           },
           {
             value: 'tag',
-            label: 'Tag',
+            label: 'Tag'
           },
           {
             value: 'progress',
-            label: 'Progress',
+            label: 'Progress'
           },
           {
             value: 'tree',
-            label: 'Tree',
+            label: 'Tree'
           },
           {
             value: 'pagination',
-            label: 'Pagination',
+            label: 'Pagination'
           },
           {
             value: 'badge',
-            label: 'Badge',
-          },
-        ],
+            label: 'Badge'
+          }
+        ]
       },
       {
         value: 'notice',
@@ -346,25 +409,25 @@ const options = [
         children: [
           {
             value: 'alert',
-            label: 'Alert',
+            label: 'Alert'
           },
           {
             value: 'loading',
-            label: 'Loading',
+            label: 'Loading'
           },
           {
             value: 'message',
-            label: 'Message',
+            label: 'Message'
           },
           {
             value: 'message-box',
-            label: 'MessageBox',
+            label: 'MessageBox'
           },
           {
             value: 'notification',
-            label: 'Notification',
-          },
-        ],
+            label: 'Notification'
+          }
+        ]
       },
       {
         value: 'navigation',
@@ -372,25 +435,25 @@ const options = [
         children: [
           {
             value: 'menu',
-            label: 'Menu',
+            label: 'Menu'
           },
           {
             value: 'tabs',
-            label: 'Tabs',
+            label: 'Tabs'
           },
           {
             value: 'breadcrumb',
-            label: 'Breadcrumb',
+            label: 'Breadcrumb'
           },
           {
             value: 'dropdown',
-            label: 'Dropdown',
+            label: 'Dropdown'
           },
           {
             value: 'steps',
-            label: 'Steps',
-          },
-        ],
+            label: 'Steps'
+          }
+        ]
       },
       {
         value: 'others',
@@ -398,31 +461,31 @@ const options = [
         children: [
           {
             value: 'dialog',
-            label: 'Dialog',
+            label: 'Dialog'
           },
           {
             value: 'tooltip',
-            label: 'Tooltip',
+            label: 'Tooltip'
           },
           {
             value: 'popover',
-            label: 'Popover',
+            label: 'Popover'
           },
           {
             value: 'card',
-            label: 'Card',
+            label: 'Card'
           },
           {
             value: 'carousel',
-            label: 'Carousel',
+            label: 'Carousel'
           },
           {
             value: 'collapse',
-            label: 'Collapse',
-          },
-        ],
-      },
-    ],
+            label: 'Collapse'
+          }
+        ]
+      }
+    ]
   },
   {
     value: 'resource',
@@ -430,23 +493,25 @@ const options = [
     children: [
       {
         value: 'axure',
-        label: 'Axure Components',
+        label: 'Axure Components'
       },
       {
         value: 'sketch',
-        label: 'Sketch Templates',
+        label: 'Sketch Templates'
       },
       {
         value: 'docs',
-        label: 'Design Documentation',
-      },
-    ],
-  },
+        label: 'Design Documentation'
+      }
+    ]
+  }
 ]
 
-const checkedCities = ref(['Shanghai', 'Beijing'])
+// 多选框
+const checkedCities = ref(['Shanghai', 'Guangzhou'])
 const cities = ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen']
 
+// 级联选择器
 const options2 = [
   {
     value: 'guide',
@@ -459,21 +524,21 @@ const options2 = [
         children: [
           {
             value: 'consistency',
-            label: 'Consistency',
+            label: 'Consistency'
           },
           {
             value: 'feedback',
-            label: 'Feedback',
+            label: 'Feedback'
           },
           {
             value: 'efficiency',
-            label: 'Efficiency',
+            label: 'Efficiency'
           },
           {
             value: 'controllability',
-            label: 'Controllability',
-          },
-        ],
+            label: 'Controllability'
+          }
+        ]
       },
       {
         value: 'navigation',
@@ -481,15 +546,15 @@ const options2 = [
         children: [
           {
             value: 'side nav',
-            label: 'Side Navigation',
+            label: 'Side Navigation'
           },
           {
             value: 'top nav',
-            label: 'Top Navigation',
-          },
-        ],
-      },
-    ],
+            label: 'Top Navigation'
+          }
+        ]
+      }
+    ]
   },
   {
     value: 'component',
@@ -501,25 +566,25 @@ const options2 = [
         children: [
           {
             value: 'layout',
-            label: 'Layout',
+            label: 'Layout'
           },
           {
             value: 'color',
-            label: 'Color',
+            label: 'Color'
           },
           {
             value: 'typography',
-            label: 'Typography',
+            label: 'Typography'
           },
           {
             value: 'icon',
-            label: 'Icon',
+            label: 'Icon'
           },
           {
             value: 'button',
-            label: 'Button',
-          },
-        ],
+            label: 'Button'
+          }
+        ]
       },
       {
         value: 'form',
@@ -527,61 +592,61 @@ const options2 = [
         children: [
           {
             value: 'radio',
-            label: 'Radio',
+            label: 'Radio'
           },
           {
             value: 'checkbox',
-            label: 'Checkbox',
+            label: 'Checkbox'
           },
           {
             value: 'input',
-            label: 'Input',
+            label: 'Input'
           },
           {
             value: 'input-number',
-            label: 'InputNumber',
+            label: 'InputNumber'
           },
           {
             value: 'select',
-            label: 'Select',
+            label: 'Select'
           },
           {
             value: 'cascader',
-            label: 'Cascader',
+            label: 'Cascader'
           },
           {
             value: 'switch',
-            label: 'Switch',
+            label: 'Switch'
           },
           {
             value: 'slider',
-            label: 'Slider',
+            label: 'Slider'
           },
           {
             value: 'time-picker',
-            label: 'TimePicker',
+            label: 'TimePicker'
           },
           {
             value: 'date-picker',
-            label: 'DatePicker',
+            label: 'DatePicker'
           },
           {
             value: 'datetime-picker',
-            label: 'DateTimePicker',
+            label: 'DateTimePicker'
           },
           {
             value: 'upload',
-            label: 'Upload',
+            label: 'Upload'
           },
           {
             value: 'rate',
-            label: 'Rate',
+            label: 'Rate'
           },
           {
             value: 'form',
-            label: 'Form',
-          },
-        ],
+            label: 'Form'
+          }
+        ]
       },
       {
         value: 'data',
@@ -589,29 +654,29 @@ const options2 = [
         children: [
           {
             value: 'table',
-            label: 'Table',
+            label: 'Table'
           },
           {
             value: 'tag',
-            label: 'Tag',
+            label: 'Tag'
           },
           {
             value: 'progress',
-            label: 'Progress',
+            label: 'Progress'
           },
           {
             value: 'tree',
-            label: 'Tree',
+            label: 'Tree'
           },
           {
             value: 'pagination',
-            label: 'Pagination',
+            label: 'Pagination'
           },
           {
             value: 'badge',
-            label: 'Badge',
-          },
-        ],
+            label: 'Badge'
+          }
+        ]
       },
       {
         value: 'notice',
@@ -619,25 +684,25 @@ const options2 = [
         children: [
           {
             value: 'alert',
-            label: 'Alert',
+            label: 'Alert'
           },
           {
             value: 'loading',
-            label: 'Loading',
+            label: 'Loading'
           },
           {
             value: 'message',
-            label: 'Message',
+            label: 'Message'
           },
           {
             value: 'message-box',
-            label: 'MessageBox',
+            label: 'MessageBox'
           },
           {
             value: 'notification',
-            label: 'Notification',
-          },
-        ],
+            label: 'Notification'
+          }
+        ]
       },
       {
         value: 'navigation',
@@ -645,25 +710,25 @@ const options2 = [
         children: [
           {
             value: 'menu',
-            label: 'Menu',
+            label: 'Menu'
           },
           {
             value: 'tabs',
-            label: 'Tabs',
+            label: 'Tabs'
           },
           {
             value: 'breadcrumb',
-            label: 'Breadcrumb',
+            label: 'Breadcrumb'
           },
           {
             value: 'dropdown',
-            label: 'Dropdown',
+            label: 'Dropdown'
           },
           {
             value: 'steps',
-            label: 'Steps',
-          },
-        ],
+            label: 'Steps'
+          }
+        ]
       },
       {
         value: 'others',
@@ -671,31 +736,31 @@ const options2 = [
         children: [
           {
             value: 'dialog',
-            label: 'Dialog',
+            label: 'Dialog'
           },
           {
             value: 'tooltip',
-            label: 'Tooltip',
+            label: 'Tooltip'
           },
           {
             value: 'popover',
-            label: 'Popover',
+            label: 'Popover'
           },
           {
             value: 'card',
-            label: 'Card',
+            label: 'Card'
           },
           {
             value: 'carousel',
-            label: 'Carousel',
+            label: 'Carousel'
           },
           {
             value: 'collapse',
-            label: 'Collapse',
-          },
-        ],
-      },
-    ],
+            label: 'Collapse'
+          }
+        ]
+      }
+    ]
   },
   {
     value: 'resource',
@@ -704,19 +769,79 @@ const options2 = [
     children: [
       {
         value: 'axure',
-        label: 'Axure Components',
+        label: 'Axure Components'
       },
       {
         value: 'sketch',
-        label: 'Sketch Templates',
+        label: 'Sketch Templates'
       },
       {
         value: 'docs',
-        label: 'Design Documentation',
-      },
-    ],
-  },
+        label: 'Design Documentation'
+      }
+    ]
+  }
 ]
+
+// 日期选择
+const size = ref<'default' | 'large' | 'small'>('default')
+
+const value1 = ref('')
+const value2 = ref('')
+const value3 = ref('')
+
+const shortcuts = [
+  {
+    text: 'Today',
+    value: new Date()
+  },
+  {
+    text: 'Yesterday',
+    value: () => {
+      const date = new Date()
+      date.setTime(date.getTime() - 3600 * 1000 * 24)
+      return date
+    }
+  },
+  {
+    text: 'A week ago',
+    value: () => {
+      const date = new Date()
+      date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+      return date
+    }
+  },
+  {
+    text: 'A Mounth ago',
+    value: () => {
+      const date = new Date()
+      date.setTime(date.getTime() - 3600 * 1000 * 24 *30 )
+      return date
+    }
+  }
+]
+
+const disabledDate = (time: Date) => {
+  return time.getTime() > Date.now()
+}
+
+// 时间选择器
+const defaultTime = new Date(2000, 1, 1, 12, 0, 0)
+
+// 格式化
+const input = ref('')
+
+const input1 = ref<string[]>()
+
+
+// 虚拟选择器
+const initials = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+
+const value4 = ref()
+const options3 = Array.from({ length: 1000 }).map((_, idx) => ({
+  value: `Option ${idx + 1}`,
+  label: `${initials[idx % 10]}${idx}`,
+}))
 </script>
 
 <style lang="scss" scoped>
