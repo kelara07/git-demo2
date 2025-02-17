@@ -2,7 +2,7 @@
   <div class="login-container">
     <el-card class="login-card">
       <h2 class="login-title">登录</h2>
-      <el-form  label-width="0px">
+      <el-form label-width="0px">
         <el-form-item>
           <el-input v-model="loginForm.username" placeholder="请输入账号"></el-input>
         </el-form-item>
@@ -50,34 +50,33 @@ const baseURL = import.meta.env.VITE_API_BASE_URL
 const tagList = ref<any[]>([
   {
     id: 1,
-    tag:'落'
+    tag: '落'
   },
   {
     id: 2,
-    tag:'霞'
+    tag: '霞'
   },
   {
     id: 3,
-    tag:'与'
+    tag: '与'
   },
   {
     id: 4,
-    tag:'孤'
+    tag: '孤'
   },
   {
     id: 5,
-    tag:'鹜'
+    tag: '鹜'
   },
   {
     id: 6,
-    tag:'齐'
+    tag: '齐'
   },
   {
     id: 7,
-    tag:'飞'
-  },
+    tag: '飞'
+  }
 ])
-
 
 const loginForm = ref<any>({
   username: '',
@@ -87,12 +86,12 @@ const loginForm = ref<any>({
 /**
  * 获取图片验证码
  */
- const captchaImage = async () => {
+const captchaImage = async () => {
   axios({
     method: 'GET',
     baseURL: baseURL,
     url: '/Auth/login/getCaptchaImage',
-    responseType: 'blob',
+    responseType: 'blob'
   }).then((res) => {
     const blob = new Blob([res.data], { type: res.data.type })
     const url = window.URL.createObjectURL(blob)
@@ -102,8 +101,7 @@ const loginForm = ref<any>({
 
 const onLogin = () => {
   tagStore.setTag(tagList.value)
-  router.push('/about')
-  console.log(tagStore.tag);
+  router.replace('/home')
 }
 
 onMounted(() => {

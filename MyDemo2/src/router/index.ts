@@ -5,29 +5,35 @@ const router = createRouter({
   routes: [
     {
       path: '',
-      component: () => import('@/views/MyHome.vue'),
+      component: () => import('@/views/Layout/Layout.vue'),
+      redirect: '/home',
       children: [
         {
+          path: '/home',
+          component: () => import('@/views/Home/Home.vue')
+        },
+        {
           path: '/about',
-          component: () => import('@/components/About.vue')
+          component: () => import('@/views/About.vue')
         },
         {
           path: '/setting',
-          component: () => import('@/components/Setting.vue')
+          component: () => import('@/views/Setting/Settings.vue')
         },
         {
           path: '/three',
           component: () => import('@/views/Three/ThreeTest.vue')
         },
-      ]
-    },
-    {
-      path: '/customer',
-      component: () => import('@/views/ListManagement/Layout.vue'),
-      children: [
         {
-          path: '/customer/list',
-          component: () => import('@/views/ListManagement/CustomerList.vue')
+          path: '/customer',
+          component: () => import('@/views/ListManagement/Layout.vue'),
+          redirect: '/customer/list',
+          children: [
+            {
+              path: '/customer/list',
+              component: () => import('@/views/ListManagement/CustomerList.vue')
+            }
+          ]
         }
       ]
     },

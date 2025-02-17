@@ -27,14 +27,14 @@ const mesh = new THREE.Mesh(geometry, material) //网络模型对象Mesh
 scene.add(mesh) //网络模型添加到场景中
 
 // 添加多个模型（添加圆形）
-// const  geometry2 = new THREE.SphereGeometry(60, 40, 40);
-// const  material2 = new THREE.MeshLambertMaterial({
-//     color: 0xffff00
-// });
-// const mesh2 = new THREE.Mesh(geometry2, material2); //网格模型对象Mesh
+const  geometry2 = new THREE.SphereGeometry(60, 40, 40);
+const  material2 = new THREE.MeshLambertMaterial({
+    color: 0xffff00
+});
+const mesh2 = new THREE.Mesh(geometry2, material2); //网格模型对象Mesh
 // mesh3.translateX(120); //球体网格模型沿Y轴正方向平移120
-// mesh2.position.set(120,0,0);//设置mesh3模型对象的xyz坐标为120,0,0
-// scene.add(mesh2);
+mesh2.position.set(120,0,0);//设置mesh3模型对象的xyz坐标为120,0,0
+scene.add(mesh2);
 
 //添加光源 //会照亮场景里的全部物体（氛围灯），前提是物体是可以接受灯光的，这种灯是无方向的，即不会有阴影。
 const ambient = new THREE.AmbientLight(0xffffff, 0.4)
