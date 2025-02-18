@@ -140,7 +140,7 @@
   <hr />
   <el-cascader :options="options2" /> -->
 
-  <hr />
+  <!-- <hr />
   <el-radio-group v-model="size" aria-label="size control">
     <el-radio-button value="large">large</el-radio-button>
     <el-radio-button value="default">default</el-radio-button>
@@ -168,7 +168,7 @@
   <div class="block">
     <span class="demonstration">Week</span>
     <el-date-picker v-model="value3" type="week" format="[Week] ww" placeholder="Pick a week" />
-  </div>
+  </div> -->
 
   <hr/>
   <div class="block">
@@ -217,6 +217,54 @@
     size="large"
     style="width: 240px"
   />
+
+  <hr/>
+  <div class="slider-demo-block">
+    <span class="demonstration">Default value</span>
+    <el-slider v-model="value5" :format-tooltip="formatTooltip" />
+  </div>
+
+  <hr/>
+  <el-switch
+    v-model="value6"
+    class="mb-2"
+    active-text="Pay by month"
+    inactive-text="Pay by year"
+  />
+
+  <hr/>
+  <div class="example-basic">
+    <el-time-picker
+      v-model="value7"
+      :disabled-hours="disabledHours"
+      :disabled-minutes="disabledMinutes"
+      :disabled-seconds="disabledSeconds"
+      placeholder="Arbitrary time"
+    />
+  </div>
+
+  <hr/>
+  <el-calendar ref="calendar">
+    <template #header="{ date }">
+      <span>Custom header content</span>
+      <span>{{ date }}</span>
+      <el-button-group>
+        <el-button size="small" @click="selectDate('prev-year')">
+          Previous Year
+        </el-button>
+        <el-button size="small" @click="selectDate('prev-month')">
+          Previous Month
+        </el-button>
+        <el-button size="small" @click="selectDate('today')">Today</el-button>
+        <el-button size="small" @click="selectDate('next-month')">
+          Next Month
+        </el-button>
+        <el-button size="small" @click="selectDate('next-year')">
+          Next Year
+        </el-button>
+      </el-button-group>
+    </template>
+  </el-calendar>
 </template>
 
 <script lang="ts" setup>
@@ -238,274 +286,274 @@ const handleChange = (value: string) => {
   console.log(value)
 }
 
-const options = [
-  {
-    value: 'guide',
-    label: 'Guide',
-    children: [
-      {
-        value: 'disciplines',
-        label: 'Disciplines',
-        children: [
-          {
-            value: 'consistency',
-            label: 'Consistency'
-          },
-          {
-            value: 'feedback',
-            label: 'Feedback'
-          },
-          {
-            value: 'efficiency',
-            label: 'Efficiency'
-          },
-          {
-            value: 'controllability',
-            label: 'Controllability'
-          }
-        ]
-      },
-      {
-        value: 'navigation',
-        label: 'Navigation',
-        children: [
-          {
-            value: 'side nav',
-            label: 'Side Navigation'
-          },
-          {
-            value: 'top nav',
-            label: 'Top Navigation'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    value: 'component',
-    label: 'Component',
-    children: [
-      {
-        value: 'basic',
-        label: 'Basic',
-        children: [
-          {
-            value: 'layout',
-            label: 'Layout'
-          },
-          {
-            value: 'color',
-            label: 'Color'
-          },
-          {
-            value: 'typography',
-            label: 'Typography'
-          },
-          {
-            value: 'icon',
-            label: 'Icon'
-          },
-          {
-            value: 'button',
-            label: 'Button'
-          }
-        ]
-      },
-      {
-        value: 'form',
-        label: 'Form',
-        children: [
-          {
-            value: 'radio',
-            label: 'Radio'
-          },
-          {
-            value: 'checkbox',
-            label: 'Checkbox'
-          },
-          {
-            value: 'input',
-            label: 'Input'
-          },
-          {
-            value: 'input-number',
-            label: 'InputNumber'
-          },
-          {
-            value: 'select',
-            label: 'Select'
-          },
-          {
-            value: 'cascader',
-            label: 'Cascader'
-          },
-          {
-            value: 'switch',
-            label: 'Switch'
-          },
-          {
-            value: 'slider',
-            label: 'Slider'
-          },
-          {
-            value: 'time-picker',
-            label: 'TimePicker'
-          },
-          {
-            value: 'date-picker',
-            label: 'DatePicker'
-          },
-          {
-            value: 'datetime-picker',
-            label: 'DateTimePicker'
-          },
-          {
-            value: 'upload',
-            label: 'Upload'
-          },
-          {
-            value: 'rate',
-            label: 'Rate'
-          },
-          {
-            value: 'form',
-            label: 'Form'
-          }
-        ]
-      },
-      {
-        value: 'data',
-        label: 'Data',
-        children: [
-          {
-            value: 'table',
-            label: 'Table'
-          },
-          {
-            value: 'tag',
-            label: 'Tag'
-          },
-          {
-            value: 'progress',
-            label: 'Progress'
-          },
-          {
-            value: 'tree',
-            label: 'Tree'
-          },
-          {
-            value: 'pagination',
-            label: 'Pagination'
-          },
-          {
-            value: 'badge',
-            label: 'Badge'
-          }
-        ]
-      },
-      {
-        value: 'notice',
-        label: 'Notice',
-        children: [
-          {
-            value: 'alert',
-            label: 'Alert'
-          },
-          {
-            value: 'loading',
-            label: 'Loading'
-          },
-          {
-            value: 'message',
-            label: 'Message'
-          },
-          {
-            value: 'message-box',
-            label: 'MessageBox'
-          },
-          {
-            value: 'notification',
-            label: 'Notification'
-          }
-        ]
-      },
-      {
-        value: 'navigation',
-        label: 'Navigation',
-        children: [
-          {
-            value: 'menu',
-            label: 'Menu'
-          },
-          {
-            value: 'tabs',
-            label: 'Tabs'
-          },
-          {
-            value: 'breadcrumb',
-            label: 'Breadcrumb'
-          },
-          {
-            value: 'dropdown',
-            label: 'Dropdown'
-          },
-          {
-            value: 'steps',
-            label: 'Steps'
-          }
-        ]
-      },
-      {
-        value: 'others',
-        label: 'Others',
-        children: [
-          {
-            value: 'dialog',
-            label: 'Dialog'
-          },
-          {
-            value: 'tooltip',
-            label: 'Tooltip'
-          },
-          {
-            value: 'popover',
-            label: 'Popover'
-          },
-          {
-            value: 'card',
-            label: 'Card'
-          },
-          {
-            value: 'carousel',
-            label: 'Carousel'
-          },
-          {
-            value: 'collapse',
-            label: 'Collapse'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    value: 'resource',
-    label: 'Resource',
-    children: [
-      {
-        value: 'axure',
-        label: 'Axure Components'
-      },
-      {
-        value: 'sketch',
-        label: 'Sketch Templates'
-      },
-      {
-        value: 'docs',
-        label: 'Design Documentation'
-      }
-    ]
-  }
-]
+// const options = [
+//   {
+//     value: 'guide',
+//     label: 'Guide',
+//     children: [
+//       {
+//         value: 'disciplines',
+//         label: 'Disciplines',
+//         children: [
+//           {
+//             value: 'consistency',
+//             label: 'Consistency'
+//           },
+//           {
+//             value: 'feedback',
+//             label: 'Feedback'
+//           },
+//           {
+//             value: 'efficiency',
+//             label: 'Efficiency'
+//           },
+//           {
+//             value: 'controllability',
+//             label: 'Controllability'
+//           }
+//         ]
+//       },
+//       {
+//         value: 'navigation',
+//         label: 'Navigation',
+//         children: [
+//           {
+//             value: 'side nav',
+//             label: 'Side Navigation'
+//           },
+//           {
+//             value: 'top nav',
+//             label: 'Top Navigation'
+//           }
+//         ]
+//       }
+//     ]
+//   },
+//   {
+//     value: 'component',
+//     label: 'Component',
+//     children: [
+//       {
+//         value: 'basic',
+//         label: 'Basic',
+//         children: [
+//           {
+//             value: 'layout',
+//             label: 'Layout'
+//           },
+//           {
+//             value: 'color',
+//             label: 'Color'
+//           },
+//           {
+//             value: 'typography',
+//             label: 'Typography'
+//           },
+//           {
+//             value: 'icon',
+//             label: 'Icon'
+//           },
+//           {
+//             value: 'button',
+//             label: 'Button'
+//           }
+//         ]
+//       },
+//       {
+//         value: 'form',
+//         label: 'Form',
+//         children: [
+//           {
+//             value: 'radio',
+//             label: 'Radio'
+//           },
+//           {
+//             value: 'checkbox',
+//             label: 'Checkbox'
+//           },
+//           {
+//             value: 'input',
+//             label: 'Input'
+//           },
+//           {
+//             value: 'input-number',
+//             label: 'InputNumber'
+//           },
+//           {
+//             value: 'select',
+//             label: 'Select'
+//           },
+//           {
+//             value: 'cascader',
+//             label: 'Cascader'
+//           },
+//           {
+//             value: 'switch',
+//             label: 'Switch'
+//           },
+//           {
+//             value: 'slider',
+//             label: 'Slider'
+//           },
+//           {
+//             value: 'time-picker',
+//             label: 'TimePicker'
+//           },
+//           {
+//             value: 'date-picker',
+//             label: 'DatePicker'
+//           },
+//           {
+//             value: 'datetime-picker',
+//             label: 'DateTimePicker'
+//           },
+//           {
+//             value: 'upload',
+//             label: 'Upload'
+//           },
+//           {
+//             value: 'rate',
+//             label: 'Rate'
+//           },
+//           {
+//             value: 'form',
+//             label: 'Form'
+//           }
+//         ]
+//       },
+//       {
+//         value: 'data',
+//         label: 'Data',
+//         children: [
+//           {
+//             value: 'table',
+//             label: 'Table'
+//           },
+//           {
+//             value: 'tag',
+//             label: 'Tag'
+//           },
+//           {
+//             value: 'progress',
+//             label: 'Progress'
+//           },
+//           {
+//             value: 'tree',
+//             label: 'Tree'
+//           },
+//           {
+//             value: 'pagination',
+//             label: 'Pagination'
+//           },
+//           {
+//             value: 'badge',
+//             label: 'Badge'
+//           }
+//         ]
+//       },
+//       {
+//         value: 'notice',
+//         label: 'Notice',
+//         children: [
+//           {
+//             value: 'alert',
+//             label: 'Alert'
+//           },
+//           {
+//             value: 'loading',
+//             label: 'Loading'
+//           },
+//           {
+//             value: 'message',
+//             label: 'Message'
+//           },
+//           {
+//             value: 'message-box',
+//             label: 'MessageBox'
+//           },
+//           {
+//             value: 'notification',
+//             label: 'Notification'
+//           }
+//         ]
+//       },
+//       {
+//         value: 'navigation',
+//         label: 'Navigation',
+//         children: [
+//           {
+//             value: 'menu',
+//             label: 'Menu'
+//           },
+//           {
+//             value: 'tabs',
+//             label: 'Tabs'
+//           },
+//           {
+//             value: 'breadcrumb',
+//             label: 'Breadcrumb'
+//           },
+//           {
+//             value: 'dropdown',
+//             label: 'Dropdown'
+//           },
+//           {
+//             value: 'steps',
+//             label: 'Steps'
+//           }
+//         ]
+//       },
+//       {
+//         value: 'others',
+//         label: 'Others',
+//         children: [
+//           {
+//             value: 'dialog',
+//             label: 'Dialog'
+//           },
+//           {
+//             value: 'tooltip',
+//             label: 'Tooltip'
+//           },
+//           {
+//             value: 'popover',
+//             label: 'Popover'
+//           },
+//           {
+//             value: 'card',
+//             label: 'Card'
+//           },
+//           {
+//             value: 'carousel',
+//             label: 'Carousel'
+//           },
+//           {
+//             value: 'collapse',
+//             label: 'Collapse'
+//           }
+//         ]
+//       }
+//     ]
+//   },
+//   {
+//     value: 'resource',
+//     label: 'Resource',
+//     children: [
+//       {
+//         value: 'axure',
+//         label: 'Axure Components'
+//       },
+//       {
+//         value: 'sketch',
+//         label: 'Sketch Templates'
+//       },
+//       {
+//         value: 'docs',
+//         label: 'Design Documentation'
+//       }
+//     ]
+//   }
+// ]
 
 // 多选框
 const checkedCities = ref(['Shanghai', 'Guangzhou'])
@@ -790,40 +838,40 @@ const value1 = ref('')
 const value2 = ref('')
 const value3 = ref('')
 
-const shortcuts = [
-  {
-    text: 'Today',
-    value: new Date()
-  },
-  {
-    text: 'Yesterday',
-    value: () => {
-      const date = new Date()
-      date.setTime(date.getTime() - 3600 * 1000 * 24)
-      return date
-    }
-  },
-  {
-    text: 'A week ago',
-    value: () => {
-      const date = new Date()
-      date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
-      return date
-    }
-  },
-  {
-    text: 'A Mounth ago',
-    value: () => {
-      const date = new Date()
-      date.setTime(date.getTime() - 3600 * 1000 * 24 *30 )
-      return date
-    }
-  }
-]
+// const shortcuts = [
+//   {
+//     text: 'Today',
+//     value: new Date()
+//   },
+//   {
+//     text: 'Yesterday',
+//     value: () => {
+//       const date = new Date()
+//       date.setTime(date.getTime() - 3600 * 1000 * 24)
+//       return date
+//     }
+//   },
+//   {
+//     text: 'A week ago',
+//     value: () => {
+//       const date = new Date()
+//       date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+//       return date
+//     }
+//   },
+//   {
+//     text: 'A Mounth ago',
+//     value: () => {
+//       const date = new Date()
+//       date.setTime(date.getTime() - 3600 * 1000 * 24 *30 )
+//       return date
+//     }
+//   }
+// ]
 
-const disabledDate = (time: Date) => {
-  return time.getTime() > Date.now()
-}
+// const disabledDate = (time: Date) => {
+//   return time.getTime() > Date.now()
+// }
 
 // 时间选择器
 const defaultTime = new Date(2000, 1, 1, 12, 0, 0)
@@ -842,6 +890,51 @@ const options3 = Array.from({ length: 1000 }).map((_, idx) => ({
   value: `Option ${idx + 1}`,
   label: `${initials[idx % 10]}${idx}`,
 }))
+
+const value5 = ref(0)
+
+const formatTooltip = (val: number) => {
+  return val / 100
+}
+
+const value6 = ref(true)
+
+const value7 = ref(new Date(2016, 9, 10, 18, 30))
+
+const makeRange = (start: number, end: number) => {
+  const result: number[] = []
+  for (let i = start; i <= end; i++) {
+    result.push(i)
+  }
+  return result
+}
+
+const disabledHours = () => {
+  return makeRange(0, 16).concat(makeRange(19, 23))
+}
+const disabledMinutes = (hour: number) => {
+  if (hour === 17) {
+    return makeRange(0, 29)
+  }
+  if (hour === 18) {
+    return makeRange(31, 59)
+  }
+}
+const disabledSeconds = (hour: number, minute: number) => {
+  if (hour === 18 && minute === 30) {
+    return makeRange(1, 59)
+  }
+}
+
+// 日历
+import type { CalendarDateType, CalendarInstance } from 'element-plus'
+
+const calendar = ref<CalendarInstance>()
+
+const selectDate = (val: CalendarDateType) => {
+  if (!calendar.value) return
+  calendar.value.selectDate(val)
+}
 </script>
 
 <style lang="scss" scoped>
@@ -858,5 +951,28 @@ const options3 = Array.from({ length: 1000 }).map((_, idx) => ({
   stroke-width: 2;
   stroke: var(--el-button-text-color);
   stroke-linecap: round;
+}
+
+.slider-demo-block {
+  max-width: 600px;
+  display: flex;
+  align-items: center;
+}
+.slider-demo-block .el-slider {
+  margin-top: 0;
+  margin-left: 12px;
+}
+.slider-demo-block .demonstration {
+  font-size: 14px;
+  color: var(--el-text-color-secondary);
+  line-height: 44px;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 0;
+}
+.slider-demo-block .demonstration + .el-slider {
+  flex: 0 0 70%;
 }
 </style>

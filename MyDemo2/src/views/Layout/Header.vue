@@ -25,6 +25,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
+// 登出
 const LogoutFn = () => {
   open3('确认登出吗？', function () {
     router.push('/login')
