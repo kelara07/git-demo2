@@ -25,6 +25,10 @@ const router = createRouter({
           component: () => import('@/views/Setting/ForPay.vue')
         },
         {
+          path: '/forPhone',
+          component: () => import('@/views/Setting/ForPhone.vue')
+        },
+        {
           path: '/three',
           component: () => import('@/views/Three/ThreeTest.vue')
         },

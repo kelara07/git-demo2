@@ -11,7 +11,8 @@
         <span class="text-large font-600 mr-3"> Title </span>
       </template>
     </el-page-header>
-    <hr />
+    <el-divider />
+    <!-- 抽屉弹框 -->
     <el-dropdown placement="top-start">
       <el-button> topStart </el-button>
       <template #dropdown>
@@ -32,6 +33,7 @@
         </el-dropdown-menu>
       </template>
     </el-dropdown>
+    <el-divider />
   </div>
 </template>
 
