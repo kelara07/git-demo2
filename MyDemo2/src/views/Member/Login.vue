@@ -21,7 +21,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item>
-          <img :src="imgSrc" alt="" height="36" />
+          <img :src="imgSrc" alt="" height="36"  @click="captchaImage"/>
         </el-form-item>
         <div class="login-actions">
           <el-button>忘记密码？</el-button>

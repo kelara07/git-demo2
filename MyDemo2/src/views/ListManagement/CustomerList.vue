@@ -44,8 +44,10 @@ import { ref } from 'vue'
 import { MoreFilled } from '@element-plus/icons-vue'
 import type { TimelineItemProps } from 'element-plus'
 
+// 定义活动类型
 interface ActivityType extends Partial<TimelineItemProps> {
   content: string
+  timestamp: string
 }
 
 /**

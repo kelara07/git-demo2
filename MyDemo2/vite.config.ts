@@ -37,6 +37,17 @@ export default defineConfig(({ mode }) => {
           target: env.VITE_API_PROXY_TARGET,
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, '')
+        },
+        '/socket.io': {
+          target: env.VITE_API_PROXY_TARGET,
+          ws: true,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/socket.io/,'/socket.io')
+        },
+        '/public': {
+          target: env.VITE_API_PROXY_TARGET,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/public/, '/public')
         }
       }
     }

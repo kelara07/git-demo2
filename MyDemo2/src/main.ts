@@ -10,6 +10,7 @@ import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 import './css/site.css'
+import './css/reSite.css'
 
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
