@@ -40,6 +40,21 @@
 <script setup lang="ts">
 import { ArrowRight } from '@element-plus/icons-vue'
 import { ArrowLeft } from '@element-plus/icons-vue'
+
+import Mock, { Random } from 'mockjs'
+
+/**
+ * 模拟数据
+ */
+const data = Mock.mock({
+  'number1|1-100.1-10': 1,
+  'number2|123.1-10': 2,
+  'number4|123.10': 3.12
+})
+
+const data5 = Random.cname()
+console.log(data5)
+
 </script>
 
 <style lang="scss" scoped></style>

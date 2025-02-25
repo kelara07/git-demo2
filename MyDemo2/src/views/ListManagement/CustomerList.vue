@@ -104,17 +104,7 @@ const activities: ActivityType[] = [
     timestamp: '2018-04-03 20:46',
     size: 'large',
     color: '#1f1f1f'
-  },
-  {
-    content: 'Custom hollow',
-    timestamp: '2018-04-03 20:46',
-    type: 'primary',
-    hollow: true,
-  },
-  {
-    content: 'Default node',
-    timestamp: '2018-04-03 20:46',
-  },
+  }
 ]
 </script>
 
